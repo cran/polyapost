@@ -1,0 +1,11 @@
+useDynLib(polyapost)
+
+importFrom(boot, simplex)
+
+export(polyap)
+export(wtpolyap)
+export(feasible)
+export(constrppmn)
+export(constrppprob)
+
+
