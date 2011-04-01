@@ -1,11 +1,14 @@
 Package: polyapost
-Version: 1.1
-Date: 2006-03-27
+Version: 1.1-1
+Date: 2011-04-01
 Imports: boot
 Title: Simulating from the Polya posterior
-Author:Glen Meeden <glen@stat.umn.edu> and  Radu Lazar <lazar@stat.umn.edu> 
+Author: Glen Meeden <glen@stat.umn.edu> and Radu Lazar
+        <lazar@stat.umn.edu>
 Maintainer: Glen Meeden <glen@stat.umn.edu>
-Description: Generate dependent samples from a non-full dimensional polytope
-          via a Markov Chain sampler
-License: GPL version 2 or newer
-Packaged: Wed Mar 29 11:12:01 2006; glen
+Description: Generate dependent samples from a non-full dimensional
+        polytope via a Markov Chain sampler
+License: GPL (>= 2)
+Packaged: 2011-04-01 20:29:19 UTC; glen
+Repository: CRAN
+Date/Publication: 2011-04-03 07:43:21
