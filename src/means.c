@@ -1,8 +1,8 @@
 /*Computes the Markov chain of means for the constrained Polya method*/
 /*for combined equality and inequality constraints A1x=b1,A2x<=b2. It returns all values.*/
-#include <stdio.h>
-#include <float.h>
+
 #include <R.h>
+
 double sum( double x[], int vectsize )
 {
      double s;

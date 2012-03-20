@@ -1,7 +1,6 @@
 /*Computes the Markov chain of the points in the polytope*/
 /*for combined equality and inequality constraints A1x=b1,A2x<=b2. It returns the last value.*/
-#include <stdio.h>
-#include <float.h>
+
 #include <R.h>
 double sum1( double x[], int vectsize )
 {

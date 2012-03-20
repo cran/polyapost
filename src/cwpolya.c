@@ -1,6 +1,4 @@
 
-#include <stdio.h>
-#include <float.h>
 #include <R.h>
 
 void cwpolya(double *x, double *w, int *nin, int *Nin)
