@@ -7,7 +7,6 @@
 %\VignetteIndexEntry{Polyapost  Package Tutorial}
 % need if creating a package vignette -- must be commented out!
 
-\usepackage{Sweave}
 \begin{document}
 
 \begin{center}
@@ -79,50 +78,30 @@ To begin suppose we have a sample of size 2 from a population of
 size 10 where the  values in the sample are 0 and 1.
 The next bit of code simulates one completed copy of the population.
 
-\begin{Schunk}
-\begin{Sinput}
-> set.seed(313)
-> library(polyapost)
-> ysamp<-c(0,1)
-> K<-10-2
-> polyap(ysamp,K)
-\end{Sinput}
-\begin{Soutput}
- [1] 0 1 0 0 1 0 1 1 0 1
-\end{Soutput}
-\end{Schunk}
+<<expp1>>=
+set.seed(313)
+library(polyapost)
+ysamp<-c(0,1)
+K<-10-2
+polyap(ysamp,K)
+@
 
 For a more realistic example 
 we construct a population of size 500,  select a 
 random sample of 25 units,  generate 10 completed copies of 
 the population and return the 10 means of the simulated populations.  
 
-\begin{Schunk}
-\begin{Sinput}
-> y<-rgamma(500,5)
-> mean(y)
-\end{Sinput}
-\begin{Soutput}
-[1] 5.021535
-\end{Soutput}
-\begin{Sinput}
-> samp<-sample(1:500,25)
-> ysamp<-y[samp]
-> mean(ysamp)
-\end{Sinput}
-\begin{Soutput}
-[1] 5.737207
-\end{Soutput}
-\begin{Sinput}
-> K<-500-25
-> simmns<-rep(0,10)
-> for(i in 1:10){simmns[i]<-mean(polyap(ysamp,K))}
-> round(simmns,digits=2)
-\end{Sinput}
-\begin{Soutput}
- [1] 5.62 5.47 5.55 5.56 6.44 5.55 5.29 6.54 5.33 6.82
-\end{Soutput}
-\end{Schunk}
+<<expp2>>=
+y<-rgamma(500,5)
+mean(y)
+samp<-sample(1:500,25)
+ysamp<-y[samp]
+mean(ysamp)
+K<-500-25
+simmns<-rep(0,10)
+for(i in 1:10){simmns[i]<-mean(polyap(ysamp,K))}
+round(simmns,digits=2)
+@
 
 When the sample size $n$ is small compared to the population 
 size $N$  a  well known approximation can be used to generate
@@ -186,29 +165,14 @@ To see how this can work
 we first construct a population using an auxiliary
 variable $x$ to construct the $y$ values. 
 
-\begin{Schunk}
-\begin{Sinput}
-> x<-sort(rgamma(500,10))
-> y<-rnorm(500,20 + 2*x,3)
-> cor(x,y)
-\end{Sinput}
-\begin{Soutput}
-[1] 0.8966712
-\end{Soutput}
-\begin{Sinput}
-> mean(y)
-\end{Sinput}
-\begin{Soutput}
-[1] 39.87462
-\end{Soutput}
-\begin{Sinput}
-> mnx<-mean(x)
-> mnx
-\end{Sinput}
-\begin{Soutput}
-[1] 9.896403
-\end{Soutput}
-\end{Schunk}
+<<expp3>>=
+x<-sort(rgamma(500,10))
+y<-rnorm(500,20 + 2*x,3)
+cor(x,y)
+mean(y)
+mnx<-mean(x)
+mnx
+@
 
 
 We divide the population into two strata, the first 250 units 
@@ -220,31 +184,19 @@ The next chuck of code selects the stratified random
 sample and constructs the $A_i$ matrices and the the $b_i$
 vectors which incorporate the prior information.
 
-\begin{Schunk}
-\begin{Sinput}
-> samp<-sort(c(sample(1:250,8),sample(251:500,17)))
-> ysamp<-y[samp]
-> xsamp<-x[samp]
-> mean(ysamp)
-\end{Sinput}
-\begin{Soutput}
-[1] 42.01639
-\end{Soutput}
-\begin{Sinput}
-> mean(xsamp)
-\end{Sinput}
-\begin{Soutput}
-[1] 10.87586
-\end{Soutput}
-\begin{Sinput}
-> A1<-rbind(rep(1,25),c(rep(1,8),rep(0,17)))
-> b1<-c(1,0.5)
-> A2<-rbind(xsamp,-diag(25))
-> b2<-c(10.0,rep(0,25))
-> A3<-matrix(xsamp,1,25)
-> b3<-9.7
-\end{Sinput}
-\end{Schunk}
+<<exp3.2>>=
+samp<-sort(c(sample(1:250,8),sample(251:500,17)))
+ysamp<-y[samp]
+xsamp<-x[samp]
+mean(ysamp)
+mean(xsamp)
+A1<-rbind(rep(1,25),c(rep(1,8),rep(0,17)))
+b1<-c(1,0.5)
+A2<-rbind(xsamp,-diag(25))
+b2<-c(10.0,rep(0,25))
+A3<-matrix(xsamp,1,25)
+b3<-9.7
+@
 
 Note that the first row of $A_1$ represents the fact that the $p_i$'s,
  the weights or probabilities assigned to the units in the sample,
@@ -270,16 +222,11 @@ $initsol$ for our example. In the solution all but the
 third, ninth and twenty-fifth have the value 0.001. These 
 remaining values are given just below.  
 
-\begin{Schunk}
-\begin{Sinput}
-> eps<-0.001
-> initsol<-feasible(A1,A2,A3,b1,b2,b3,eps)
-> initsol[c(3,9,25)]
-\end{Sinput}
-\begin{Soutput}
-[1] 0.0010000 0.3107501 0.1742499
-\end{Soutput}
-\end{Schunk}
+<<exp3.4>>=
+eps<-0.001
+initsol<-feasible(A1,A2,A3,b1,b2,b3,eps)
+initsol[c(3,9,25)]
+@
 
 We are ready to generate completed copies of the population and 
 calculate their respective means. This will be done using
@@ -319,23 +266,21 @@ in Figure \ref{fig:strat}. From the plot it appears that the chain is
 mixing well and standard diagnostics indicate that this is so.
 
 
-\begin{Schunk}
-\begin{Sinput}
-> burnin<-1
-> reps<-200001
-> out<-constrppmn(A1,A2,A3,b1,b2,b3,initsol,reps,ysamp,burnin)
-> mean(out[[1]])
-\end{Sinput}
-\begin{Soutput}
-[1] 39.81557
-\end{Soutput}
-\end{Schunk}
+<<exp3.6>>=
+burnin<-1
+reps<-200001
+out<-constrppmn(A1,A2,A3,b1,b2,b3,initsol,reps,ysamp,burnin)
+mean(out[[1]])
+@
 
 
 
 \begin{figure}
 \begin{center}
-\includegraphics{pp1-figstrat}
+<<label=figstrat,fig=TRUE,echo=FALSE>>=
+plot(out[[1]][seq(1,200001,by=200)])
+#plot(out[[1]])
+@
 \end{center}
 \caption{Plot of a subsequence of 1,000 simulated  population 
 means where every two hundredth was taken from a dependent sequence 
@@ -351,21 +296,10 @@ The second component of the output from the function \verb@constrppmn@
   quantiles of the first component, i.e. an approximate 95 percent
   confidence interval of the population mean.
 
-\begin{Schunk}
-\begin{Sinput}
-> out[[2]] 
-\end{Sinput}
-\begin{Soutput}
-[1] 39.81557
-\end{Soutput}
-\begin{Sinput}
-> out[[3]] 
-\end{Sinput}
-\begin{Soutput}
-    2.5%    97.5% 
-38.51243 40.94838 
-\end{Soutput}
-\end{Schunk}
+<<exp3.7>>=
+out[[2]] 
+out[[3]] 
+@
 
 \subsection{Some computing issues}
 
@@ -403,38 +337,26 @@ generated dependent samples from the unconstrained Polya
 posterior. The following bit of code does that and a plot of a subsequence 
 of the simulate population means are given in Figure \ref{fig:cprs}.
 
-\begin{Schunk}
-\begin{Sinput}
-> A1<-rbind(rep(1,25))
-> A2<--diag(25)
-> b1<-1
-> b2<-rep(0,25)
-> initsol<-rep(0.04,25)
-> reps<-1000001
-> out<-constrppmn(A1,A2,NULL,b1,b2,NULL,initsol,reps,ysamp,burnin)
-> mean(out[[1]])
-\end{Sinput}
-\begin{Soutput}
-[1] 42.04514
-\end{Soutput}
-\begin{Sinput}
-> subseq<-seq(1,1000001,by=1000)
-> mean(out[[1]][subseq])
-\end{Sinput}
-\begin{Soutput}
-[1] 42.0512
-\end{Soutput}
-\begin{Sinput}
-> sqrt(var(out[[1]][subseq]))
-\end{Sinput}
-\begin{Soutput}
-[1] 1.445409
-\end{Soutput}
-\end{Schunk}
+<<exp3.8>>=
+A1<-rbind(rep(1,25))
+A2<--diag(25)
+b1<-1
+b2<-rep(0,25)
+initsol<-rep(0.04,25)
+reps<-1000001
+out<-constrppmn(A1,A2,NULL,b1,b2,NULL,initsol,reps,ysamp,burnin)
+mean(out[[1]])
+subseq<-seq(1,1000001,by=1000)
+mean(out[[1]][subseq])
+sqrt(var(out[[1]][subseq]))
+@
 
 \begin{figure}
 \begin{center}
-\includegraphics{pp1-figcprs}
+<<label=figcprs,fig=TRUE,echo=FALSE>>=
+plot(out[[1]][subseq])
+#plot(out[[1]])
+@
 \end{center}
 \caption{Plot of a subsequence of 1,000 simulated  population 
 means where every thousandth was taken 
@@ -449,29 +371,21 @@ We can now compare this sequence of 1,000  dependent simulated population
 \ref{fig:prs} that the subsequence of dependent means look very much 
 like the sequence of independent means.
 
-\begin{Schunk}
-\begin{Sinput}
-> K<-500-25
-> simmns<-rep(0,1000)
-> for(i in 1:1000){
-+        simmns[i]<-mean(polyap(ysamp,K))
-+ }
-> mean(simmns)
-\end{Sinput}
-\begin{Soutput}
-[1] 42.05891
-\end{Soutput}
-\begin{Sinput}
-> sqrt(var(simmns))
-\end{Sinput}
-\begin{Soutput}
-[1] 1.483685
-\end{Soutput}
-\end{Schunk}
+<<exp3.9>>=
+K<-500-25
+simmns<-rep(0,1000)
+for(i in 1:1000){
+       simmns[i]<-mean(polyap(ysamp,K))
+}
+mean(simmns)
+sqrt(var(simmns))
+@ 
 
 \begin{figure}
 \begin{center}
-\includegraphics{pp1-fig:prs}
+<<label=fig:prs,fig=TRUE,echo=FALSE>>=
+plot(simmns)
+@
 \end{center}
 \caption{Plot of 1,000 independent simulated population means 
 generated from  the uniform distribution over the simplex.}
@@ -492,27 +406,17 @@ The function \verb@constrppprob@ returns a subsequence of
  dependent observations from the from the polytope.
 A simple example is given just below.
 
-\begin{Schunk}
-\begin{Sinput}
-> A1<-rbind(rep(1,6),1:6)
-> A2<-rbind(c(2,5,7,1,10,8),diag(-1,6))
-> A3<-matrix(c(1,1,1,0,0,0),1,6)
-> b1<-c(1,3.5)
-> b2<-c(6,rep(0,6))
-> b3<-0.45
-> initsol<-rep(1/6,6)
-> out<-constrppprob(A1,A2,A3,b1,b2,b3,initsol,2000,5)
-> round(out,digits=5)
-\end{Sinput}
-\begin{Soutput}
-           [,1]    [,2]    [,3]    [,4]    [,5]    [,6]
-initsol 0.05892 0.43243 0.09696 0.06758 0.04969 0.29443
-initsol 0.08974 0.32264 0.17097 0.11836 0.01115 0.28715
-initsol 0.03262 0.18459 0.31288 0.22341 0.21305 0.03344
-initsol 0.13491 0.35122 0.08387 0.06063 0.04767 0.32169
-initsol 0.04459 0.02240 0.46093 0.37634 0.05197 0.04376
-\end{Soutput}
-\end{Schunk}
+<<exp4>>=
+A1<-rbind(rep(1,6),1:6)
+A2<-rbind(c(2,5,7,1,10,8),diag(-1,6))
+A3<-matrix(c(1,1,1,0,0,0),1,6)
+b1<-c(1,3.5)
+b2<-c(6,rep(0,6))
+b3<-0.45
+initsol<-rep(1/6,6)
+out<-constrppprob(A1,A2,A3,b1,b2,b3,initsol,2000,5)
+round(out,digits=5)
+@
 
 \subsubsection{The weighted Polya posterior}
 
@@ -535,16 +439,11 @@ selected from a population of size $N$.
   The original composition of the urn along with the $N-n$ selected
   values, in order, are returned. A simple example follows.
 
-\begin{Schunk}
-\begin{Sinput}
-> ysamp<-c(1,2,3)
-> wts<-c(1,2,3)
-> wtpolyap(ysamp,wts,25)
-\end{Sinput}
-\begin{Soutput}
- [1] 1 2 3 3 3 3 3 3 3 3 2 3 3 3 3 2 3 3 3 3 3 3 3 3 2 3 3 3
-\end{Soutput}
-\end{Schunk}
+<<exp5>>=
+ysamp<-c(1,2,3)
+wts<-c(1,2,3)
+wtpolyap(ysamp,wts,25)
+@
 
 \bibliographystyle{plain}
 \bibliography{ref}
