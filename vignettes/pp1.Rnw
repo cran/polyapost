@@ -383,7 +383,7 @@ sqrt(var(simmns))
 
 \begin{figure}
 \begin{center}
-<<label=fig:prs,fig=TRUE,echo=FALSE>>=
+<<label=figprs,fig=TRUE,echo=FALSE>>=
 plot(simmns)
 @
 \end{center}

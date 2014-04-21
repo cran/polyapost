@@ -1,4 +1,4 @@
-25268d2f476215eb0fec68bbd8f1cd6c *DESCRIPTION
+eadf626f64cd4373588b71e1a14de944 *DESCRIPTION
 c76df6367ec5ce07212d916fcc833e16 *NAMESPACE
 af205ca09fab4fe4f460b9c4348eb85d *R/checkconstr.R
 a24b9132c8639e5deaee307bc7fe9e23 *R/constrmat.R
@@ -14,9 +14,9 @@ a1a00e355ceb163ef53365bfca339836 *R/polyap.R
 2be02f772609a4f9913e4bf2a30c876d *R/probvect.R
 d2d0660f39acf21c1149c4945c4c8b48 *R/probvect1.R
 be39dcf61a777387307071ea97d954aa *R/wtpolyap.R
-30f2193ca2dbb76222b568e54fe03ba1 *build/vignette.rds
-6821e81a4d0275f699002ea4158cacca *inst/doc/pp1.R
-134ca7abd4d89854e6f9a5e4c4e57ff5 *inst/doc/pp1.Rnw
+d7f807e1d748648a1764c6a866aed137 *build/vignette.rds
+8bd03911b62d364e44db6c2396d2b524 *inst/doc/pp1.R
+33d591a767d4e338d00e677dedba1b02 *inst/doc/pp1.Rnw
 60cf84f029be4a5325c1528e9e60e3ec *inst/doc/pp1.pdf
 3b716132aa2bd8685f02914ffd67b2c1 *man/constrppmn.Rd
 bfe800f8e58196f92238b7c95ea743a1 *man/constrppprob.Rd
@@ -26,5 +26,5 @@ f3306aed9f43d4ce80ac07816b69a2ed *man/wtpolyap.Rd
 acc74c55459b9a9eeec62c095169c1cb *src/cwpolya.c
 d067003129a24718720d6524880cdf08 *src/means.c
 3210d9b6a13447a22754e5819e7cb2dc *src/probvect.c
-134ca7abd4d89854e6f9a5e4c4e57ff5 *vignettes/pp1.Rnw
+33d591a767d4e338d00e677dedba1b02 *vignettes/pp1.Rnw
 4388f62ae698c61d4700c06f5e555ecc *vignettes/ref.bib

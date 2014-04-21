@@ -119,7 +119,7 @@ sqrt(var(simmns))
 
 
 ###################################################
-### code chunk number 12: fig:prs
+### code chunk number 12: figprs
 ###################################################
 plot(simmns)
 
