@@ -1,5 +1,0 @@
-doc/Makefile
-doc/.*[.]tex
-doc/.*[.]bbl
-doc/Rplots.pdf
-doc/pp1.bbl
