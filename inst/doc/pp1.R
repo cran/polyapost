@@ -2,23 +2,15 @@
 ### Encoding: UTF-8
 
 ###################################################
-### code chunk number 1: library
+### code chunk number 1: options-width
+###################################################
+options(keep.source = TRUE, width = 60)
+
+
+###################################################
+### code chunk number 2: library
 ###################################################
 library(polyapost)
-
-
-###################################################
-### code chunk number 2: R
-###################################################
-foo <- getRversion()
-baz <- library(help = "polyapost")
-baz <- baz$info[[1]]
-baz <- baz[grep("Version", baz)]
-baz <- sub("^Version: *", "", baz)
-qux <- library(help = "rcdd")
-qux <- qux$info[[1]]
-qux <- qux[grep("Version", qux)]
-qux <- sub("^Version: *", "", qux)
 
 
 ###################################################
@@ -171,7 +163,7 @@ wtpolyap(ysamp,wts,25)
 
 
 ###################################################
-### code chunk number 18: pp1.Rnw:527-528
+### code chunk number 18: exphr-smp
 ###################################################
 smp<-c(20,10,10,25,15,20)
 
@@ -180,19 +172,44 @@ smp<-c(20,10,10,25,15,20)
 ### code chunk number 19: exphr
 ###################################################
  mxcst<-rbind(c(1,0,0,1,0,0),c(0,1,0,0,1,0),c(1,1,1,0,0,0))
- mncst<-c(5000/10000,3000/10000,6000/10000)
+ mncst<-c("5000/10000","3000/10000","6000/10000")
  out<-hitrun(smp, a2=mxcst, b2=mncst, nbatch=20, blen=1000)
 
 
 ###################################################
-### code chunk number 20: exphr-means
+### code chunk number 20: show-inexact
 ###################################################
- round(colMeans(out$batch), digits=3)
+foo <- d2q(3000/10000)
+bar <- q2q("3000/10000")
+baz <- qmq(foo, bar)
+foo # three tenths decimal converted to binary converted to rational
+bar # three tenths rational
+baz # the difference
 
 
 ###################################################
-### code chunk number 21: exphr-mcse
+### code chunk number 21: exphr-means
 ###################################################
- round(apply(out$batch, 2, sd) / sqrt(out$nbatch), digits=3)
+round(colMeans(out$batch), digits=3)
+
+
+###################################################
+### code chunk number 22: exphr-mcse
+###################################################
+round(apply(out$batch, 2, sd) / sqrt(out$nbatch), digits=3)
+
+
+###################################################
+### code chunk number 23: fig-enough-code
+###################################################
+i <- 1
+acf(out$batch[,i], main=paste("Batch Means for Component", i))
+
+
+###################################################
+### code chunk number 24: fig-enough
+###################################################
+i <- 1
+acf(out$batch[,i], main=paste("Batch Means for Component", i))
 
 
