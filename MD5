@@ -1,4 +1,4 @@
-8617e3b918428d170ab99177beb5c1a5 *DESCRIPTION
+6ff0a8d596886a93f90be15886f4ed6d *DESCRIPTION
 b7608e4bdf9470a5d33898041a55e8e3 *NAMESPACE
 af205ca09fab4fe4f460b9c4348eb85d *R/checkconstr.R
 a24b9132c8639e5deaee307bc7fe9e23 *R/constrmat.R
@@ -15,11 +15,11 @@ a1a00e355ceb163ef53365bfca339836 *R/polyap.R
 2be02f772609a4f9913e4bf2a30c876d *R/probvect.R
 7901d2bcd10051987b69652cb5a12e05 *R/probvect1.R
 be39dcf61a777387307071ea97d954aa *R/wtpolyap.R
-2db462d041bb6fc3fccedd187c151066 *build/partial.rdb
-e5efe483b8c9af273950e553f0478661 *build/vignette.rds
+a451d2000d3fb58a110a08195bc31cbb *build/partial.rdb
+e3aadde4e090c27becc206f03ebf720a *build/vignette.rds
 167de2a9d12b56bb11bbcae3e4733f8a *inst/doc/pp1.R
 2f0247aa9df68aed7f2a1c95036dbc5d *inst/doc/pp1.Rnw
-e033a55aa93944ab4f3d250a9446531b *inst/doc/pp1.pdf
+e6e720c39bc2e9347f7fe8105bea95d6 *inst/doc/pp1.pdf
 b82145eac7de98f73be15e8ba268fad9 *man/constrppmn.Rd
 be2b9825a7e93750238145762f1440bf *man/constrppprob.Rd
 1d8cc2b1bd99a5fdad576babb277f6ee *man/feasible.Rd
@@ -28,7 +28,7 @@ caa164842842182966f9f645ccc7ecf4 *man/polyap.Rd
 0d8e12dfce1a8ef2859d4f39ec51f44b *man/wtpolyap.Rd
 c0241c04b85b4ee2f65eab984c95d353 *src/Makevars
 2a4897437b263d1b80d4343aab5ffecf *src/cwpolya.c
-0c62d1cc3e940b4220f7ac27ab8b09be *src/hitrun.c
+73a8a2dd0754ac4e753c50d0db43b522 *src/hitrun.c
 8d828342f06652d82b27fceba704a7d1 *src/init.c
 033bb7060b2d515159ff8fbf93ce6480 *src/means.c
 d09330139cdab8b048fab14f91fe61e2 *src/polyapost.h
